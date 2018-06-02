@@ -17,6 +17,7 @@
 #include "TS_redFont.h"
 #include "TS_blueFont.h"
 #include "taytay.h"
+#include "TS_blue_only.h"
 
 // rep (Mode 1)
 #include "rep.h"
@@ -34,10 +35,11 @@
 #include "Question_Mark.h"
 
 // Delicate (Mode 4)
-#include "deli.h"
-#include "_cate.h"
 #include "cate_new.h"
 #include "deli_new.h"
+#include "del.h"
+#include "i.h"
+#include "cate_newest.h"
 
 // Crown Heart (Mode 5)
 #include "crown_heart_better.h"
@@ -50,6 +52,9 @@
 
 // Universal Frames
 #include "blank.h"
+
+
+
 
 // Which pin on the Arduino is connected to the NeoPixels?
 #define PIN            6
