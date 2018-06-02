@@ -10,23 +10,30 @@
 //////////////////////////////////////////////////////
 
 // We Love TS (Mode 0)
-#include "we.h"
+#include "we_blue_only.h"
+#include "teeniest_heart.h"
 #include "small_heart.h"
 #include "bigger_heart.h"
 #include "biggest_heart.h"
-#include "TS_redFont.h"
-#include "TS_blueFont.h"
+#include "ts_centered_red.h"
+#include "ts_centered_blue.h"
 #include "taytay.h"
-#include "TS_blue_only.h"
 
 // rep (Mode 1)
 #include "rep.h"
 
 // LWYMMD Cat Squad (Mode 2)
+#include "big_u.h"
+#include "squad_1.h"
+#include "squad_2.h"
+#include "squad_3.h"
+#include "squad_4.h"
+#include "squad_5.h"
+#include "squad_6.h"
 #include "cat_super_new.h"
-#include "thirteen.h"
-#include "squad_u.h"
-#include "u.h"
+#include "thirteen_big_red_1.h"
+#include "thirteen_big_red_2.h"
+#include "thirteen_big_red_3.h"
 
 // Are you ready for it? (Mode 3)
 #include "Are_you_.h"
@@ -35,20 +42,37 @@
 #include "Question_Mark.h"
 
 // Delicate (Mode 4)
-#include "cate_new.h"
-#include "deli_new.h"
-#include "del.h"
-#include "i.h"
-#include "cate_newest.h"
+//#include "del.h"
+//#include "i.h"
+//#include "cate_newest.h"
 
 // Crown Heart (Mode 5)
 #include "crown_heart_better.h"
+#include "crown_heart_bigger.h"
 
-// NYD (Mode 6)
-#include "nyd.h"
-
-// Snake (Mode 7)
-#include "snake.h"
+// Snake (Mode 6)
+//#include "snake.h"
+//#include "newer_snake_1.h"
+//#include "newer_snake_2.h"
+//#include "newer_snake_3.h"
+//#include "newer_snake_4.h"
+//#include "newer_snake_5.h"
+//#include "newer_snake_6.h"
+//#include "newer_snake_7.h"
+//#include "newer_snake_8.h"
+#include "snake_newest_1.h"
+#include "snake_newest_2.h"
+#include "snake_newest_3.h"
+#include "snake_newest_4.h"
+#include "snake_newest_5.h"
+#include "snake_newest_6.h"
+#include "snake_newest_7.h"
+#include "snake_newest_8.h"
+#include "snake_newest_9.h"
+#include "snake_newest_10.h"
+#include "snake_newest_11.h"
+#include "snake_newest_12.h"
+#include "snake_newest_13.h"
 
 // Universal Frames
 #include "blank.h"
@@ -73,7 +97,7 @@ Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GBR + NEO_KHZ80
 
 // Modes 
 int mode = 0;
-#define NUM_MODES 8
+#define NUM_MODES 5
 
 // Frames
 int frame = 0;          // current frame
@@ -83,14 +107,11 @@ uint32_t newFrame[NUMPIXELS];
 
 // Order/Duration of frames in each mode
 int mode_frames[NUM_MODES][NUM_FRAMES] = {
-  {0,0,0,1,2,3,1,2,3,4,4,5,5,4,4,5,5,6,6,6}, // Mode 0 (0-6)
-  {7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7}, // Mode 1 (7)
-  {8,8,8,8,8,9,9,9,9,9,10,10,10,10,10,11,11,11,11,11}, // Mode 2 (8-11)
-  {12,12,12,12,12,13,13,13,13,13,14,14,14,14,14,15,15,15,15,15}, // Mode 3 (12-15)
-  {16,16,16,16,16,17,17,17,17,17,16,16,16,16,16,17,17,17,17,17}, // Mode 4 (16-17)
-  {18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18}, // Mode 5 (18)
-  {19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19}, // Mode 6 (19)
-  {20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20}  // Mode 7 (20)
+  { 0, 0, 0,23, 1, 2, 3,23, 1, 2, 3, 4, 5, 4, 4, 6, 6, 6, 6, 6}, // Mode 0 (we <3 TAY TAY) (0-6),23 
+  {38,38,38,38,24,24,24,25,26,27,28,29,30,30,42,42,43,43,44,44}, // Mode 1 (U-Squad)(8-11)  (24-30), 38, 42,43,44  
+  {12,12,12,12,12,13,13,13,13,13,14,14,14,14,14,15,15,15,15,15}, // Mode 2 (are you ready for it?) (12-15) 
+  {18,18,18,18,18,58,58,18,18,18,18,58,58,18,18,18,18,18,18,18}, // Mode 3 (crown heart) (18), 58
+  { 7, 7, 21,7, 7, 7, 7,45,46,47,48,49,50,51,52,53,54,55,56,57}, // Mode 4 (rep & snake) (20) (31-35), 39, 40, 41 (45-56)
 };
 
 
@@ -127,7 +148,8 @@ void setUpFrame() {
   // 2) Grab the corresponding frame data pointer 
   switch(frameNumber) {
     case 0 :
-      memcpy_P(newFrame, we, 600);
+      //memcpy_P(newFrame, we, 600);
+      memcpy_P(newFrame, we_blue_only, 600);
       break;
     case 1 :
       memcpy_P(newFrame, small_heart, 600);
@@ -139,28 +161,20 @@ void setUpFrame() {
       memcpy_P(newFrame, biggest_heart, 600);
       break;
     case 4 :
-      memcpy_P(newFrame, ts_red_font, 600);      
+      //memcpy_P(newFrame, ts_red_font, 600);
+      //memcpy_P(newFrame, ts_red_only, 600);
+      memcpy_P(newFrame, ts_centered_red, 600);      
       break;
     case 5 :
-      memcpy_P(newFrame, ts_blue_font, 600);      
+      //memcpy_P(newFrame, ts_blue_font, 600);
+      //memcpy_P(newFrame, ts_blue_only, 600);     
+      memcpy_P(newFrame, ts_centered_blue, 600);   
       break;
     case 6 :
       memcpy_P(newFrame, taytay, 600);
       break;
     case 7 :
       memcpy_P(newFrame, rep, 600);
-      break;
-    case 8 :
-      memcpy_P(newFrame, cat_super_new, 600);
-      break;
-    case 9 :
-      memcpy_P(newFrame, thirteen, 600);
-      break;
-    case 10 :
-      memcpy_P(newFrame, squad_u, 600);
-      break;
-    case 11 :
-      memcpy_P(newFrame, u, 600);
       break;
     case 12 :
       memcpy_P(newFrame, are_you_, 600);
@@ -174,24 +188,92 @@ void setUpFrame() {
     case 15 :
       memcpy_P(newFrame, question_mark, 600);
       break;
-    case 16 :
-      memcpy_P(newFrame, deli_new, 600);
-      break;
-    case 17 :
-      memcpy_P(newFrame, cate_new, 600);
-      break;
     case 18 :
       memcpy_P(newFrame, crown_heart_better, 600);
-      break;
-    case 19 :
-      memcpy_P(newFrame, nyd, 600);
-      break;
-    case 20 :
-      memcpy_P(newFrame, snake, 600);
       break;
     case 21 :
       memcpy_P(newFrame, blank, 600);
       break;
+    case 23 :
+      memcpy_P(newFrame, teeniest_heart, 600);
+      break;
+    case 24 :
+      memcpy_P(newFrame, big_u, 600);
+      break;
+    case 25 :
+      memcpy_P(newFrame, squad_1, 600);
+      break;
+    case 26 :
+      memcpy_P(newFrame, squad_2, 600);
+      break;
+    case 27 :
+      memcpy_P(newFrame, squad_3, 600);
+      break;
+    case 28 :
+      memcpy_P(newFrame, squad_4, 600);
+      break;
+    case 29 :
+      memcpy_P(newFrame, squad_5, 600);
+      break;
+    case 30 :
+      memcpy_P(newFrame, squad_6, 600);
+      break;
+    case 38 :
+      memcpy_P(newFrame, cat_super_new, 600);
+      break;
+    case 42 :
+      memcpy_P(newFrame, thirteen_big_red_1, 600);
+      break;
+    case 43 :
+      memcpy_P(newFrame, thirteen_big_red_2, 600);
+      break;
+    case 44 :
+      memcpy_P(newFrame, thirteen_big_red_3, 600);
+      break;
+      
+    case 45 :
+      memcpy_P(newFrame, snake_newest_1, 600);
+      break;
+    case 46 :
+      memcpy_P(newFrame, snake_newest_2, 600);
+      break;
+    case 47 :
+      memcpy_P(newFrame, snake_newest_3, 600);
+      break;
+    case 48 :
+      memcpy_P(newFrame, snake_newest_4, 600);
+      break;
+    case 49 :
+      memcpy_P(newFrame, snake_newest_5, 600);
+      break;
+    case 50 :
+      memcpy_P(newFrame, snake_newest_6, 600);
+      break;
+    case 51 :
+      memcpy_P(newFrame, snake_newest_7, 600);
+      break;
+    case 52 :
+      memcpy_P(newFrame, snake_newest_8, 600);
+      break;
+    case 53 :
+      memcpy_P(newFrame, snake_newest_9, 600);
+      break;
+    case 54 :
+      memcpy_P(newFrame, snake_newest_10, 600);
+      break;
+    case 55 :
+      memcpy_P(newFrame, snake_newest_11, 600);
+      break;
+    case 56 :
+      memcpy_P(newFrame, snake_newest_12, 600);
+      break;
+    case 57 :
+      memcpy_P(newFrame, snake_newest_13, 600);
+      break;
+    case 58 :
+      memcpy_P(newFrame, crown_heart_bigger, 600);
+      break;
+      
     default :
       return;
   }
