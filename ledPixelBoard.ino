@@ -9,76 +9,7 @@
 //                                                  //
 //////////////////////////////////////////////////////
 
-// We Love TS (Mode 0)
-#include "we_blue_only.h"
-#include "teeniest_heart.h"
-#include "small_heart.h"
-#include "bigger_heart.h"
-#include "biggest_heart.h"
-#include "ts_centered_red.h"
-#include "ts_centered_blue.h"
-#include "taytay.h"
-
-// rep (Mode 1)
-#include "rep.h"
-
-// LWYMMD Cat Squad (Mode 2)
-#include "big_u.h"
-#include "squad_1.h"
-#include "squad_2.h"
-#include "squad_3.h"
-#include "squad_4.h"
-#include "squad_5.h"
-#include "squad_6.h"
-#include "cat_super_new.h"
-#include "thirteen_big_red_1.h"
-#include "thirteen_big_red_2.h"
-#include "thirteen_big_red_3.h"
-
-// Are you ready for it? (Mode 3)
-#include "Are_you_.h"
-#include "ready_stacked.h"
-#include "_for_it.h"
-#include "Question_Mark.h"
-
-// Delicate (Mode 4)
-//#include "del.h"
-//#include "i.h"
-//#include "cate_newest.h"
-
-// Crown Heart (Mode 5)
-#include "crown_heart_better.h"
-#include "crown_heart_bigger.h"
-
-// Snake (Mode 6)
-//#include "snake.h"
-//#include "newer_snake_1.h"
-//#include "newer_snake_2.h"
-//#include "newer_snake_3.h"
-//#include "newer_snake_4.h"
-//#include "newer_snake_5.h"
-//#include "newer_snake_6.h"
-//#include "newer_snake_7.h"
-//#include "newer_snake_8.h"
-#include "snake_newest_1.h"
-#include "snake_newest_2.h"
-#include "snake_newest_3.h"
-#include "snake_newest_4.h"
-#include "snake_newest_5.h"
-#include "snake_newest_6.h"
-#include "snake_newest_7.h"
-#include "snake_newest_8.h"
-#include "snake_newest_9.h"
-#include "snake_newest_10.h"
-#include "snake_newest_11.h"
-#include "snake_newest_12.h"
-#include "snake_newest_13.h"
-
-// Universal Frames
-#include "blank.h"
-
-
-
+#include "Frames/reputation/reputation.h"
 
 // Which pin on the Arduino is connected to the NeoPixels?
 #define PIN            6
@@ -95,15 +26,16 @@ unsigned long timeSinceLastInt;
 // Construct NeoPixel Object
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GBR + NEO_KHZ800);
 
-// Modes 
-int mode = 0;
-#define NUM_MODES 5
 
-// Frames
+int mode = 0;           // current mode
 int frame = 0;          // current frame
+uint32_t newFrame[NUMPIXELS];
+
+
+
+#define NUM_MODES 5
 #define NUM_FRAMES 20   // Number of frames in each mode (frames can repeat)
 int delayVal = 200;     // Constant delay value between frames
-uint32_t newFrame[NUMPIXELS];
 
 // Order/Duration of frames in each mode
 int mode_frames[NUM_MODES][NUM_FRAMES] = {
@@ -327,5 +259,3 @@ void buttonInput() {
   }
   
 }
-
-
