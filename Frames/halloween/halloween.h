@@ -36,6 +36,7 @@
 //                                                  //
 //////////////////////////////////////////////////////
 
+#define CYCLE_THROUGH_MODES
 #define NUM_MODES 3
 #define NUM_FRAMES 20   // Number of frames in each mode (frames can repeat)
 int delayVal = 200;     // Constant delay value between frames

@@ -59,6 +59,13 @@ void loop() {
     // Wait and increment to next frame
     delay(delayVal);
     frame = (frame + 1) % NUM_FRAMES;
+
+    // Cycle Through Modes
+    #ifdef CYCLE_THROUGH_MODES
+    if (frame == 0) {
+      mode = (mode + 1) % NUM_MODES;
+    }
+    #endif
 }
 
 /*   
